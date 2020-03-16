@@ -1,3 +1,5 @@
+This is the repository for Björn Borg's headless solution project. Follow this README for setting it up and scripts.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
