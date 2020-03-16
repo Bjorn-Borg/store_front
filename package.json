@@ -9,6 +9,7 @@
     "performance": "bash ./scripts/lighthouse_runner"
   },
   "dependencies": {
+    "csv-writer": "^1.6.0",
     "next": "9.3.0",
     "react": "16.13.0",
     "react-dom": "16.13.0"
