@@ -1,5 +1,5 @@
 const fs = require("fs");
-const path = "../LighthouseOutput/";
+const path = "./LighthouseOutput/";
 // const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const createCsvStringifier = require("csv-writer").createObjectCsvStringifier;
 
