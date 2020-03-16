@@ -1,11 +1,10 @@
 const fs = require("fs");
-const path = "./LighthouseOutput/";
-const filePath = "./LighthouseOutput/";
+const path = "../LighthouseOutput/";
 // const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const createCsvStringifier = require("csv-writer").createObjectCsvStringifier;
 
 const FileParser = fileName => {
-  const file = require(`${filePath}${fileName}`);
+  const file = require(`${path}${fileName}`);
   const performance = file.categories.performance.score;
   const accessibility = file.categories.accessibility.score;
   const bestPractices = file.categories["best-practices"].score;

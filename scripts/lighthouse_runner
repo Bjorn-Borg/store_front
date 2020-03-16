@@ -6,6 +6,6 @@ GT=$(git log -1 --pretty=format:'%H')
 
 lighthouse http://localhost:3000 --view --output 'json' 'html' --output-path ./LighthouseOutput/$(date +%F+%S)."$GT"
 
-node ./scripts/reportReader.js
+node reportReader.js
 
 git add .
