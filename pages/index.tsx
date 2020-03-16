@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { NextPage } from "next";
 import Nav from "../components/navigation";
-// export const config = { amp: true };
+export const config = { amp: true };
 
 const Home: NextPage<{ userAgent: string }> = ({ userAgent }) => (
   <div>
