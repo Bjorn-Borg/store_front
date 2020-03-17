@@ -1,4 +1,4 @@
-This is the repository for Björn Borg's headless solution project. Follow this README for setting it up and scripts.
+This is the repository for Björn Borg's headless solution project. Follow this README for setting it up and scripts information.
 
 ### Available scripts
 
@@ -9,7 +9,7 @@ npm run performance
 
 ### Version control
 
-This project is version controled in github and should follow the standard master > development > branching pattern. New updates to the project should go through pull requests, should be test covered, should not break any tests, and should comply with the performance threshold.
+This project is version controled in github and should follow the standard master > development > branching pattern. New updates to the project should go through pull requests, should be test covered, should not break any tests, and should comply with the performance threshold. Linter on every commit.
 
 ### Design pattern
 
@@ -20,6 +20,14 @@ The project is TDD. Every new feature needs unit, integration and e2e tests befo
 
 Setting a docker container to run this project in
 Set the first test suites in Jest and Cypress
+
+### Performance monitoring flow
+
+The performance script is set to run on every commit. The pre commit hook also includes git add . command, so there's no need to use it before commiting. The hook will run google lighthouse and save the test results in a json file and an html file that can be opened in the browser. The files are saved localy in LighthouseOutput.
+The resulting scores for the test are saved in the LighthouseReports.csv in the root, and should be saved in the repo. Along with the scores the script will save the date and commit id so that performance changes can be tracked down in the commit tree.
+
+- One thing to watch for
+  How the csv file is going to behave during merges is still unkown, therefore, merges should be dealt with using caution. It is best to manually merge the file in the first attempts and then write a script for it later if it is needed.
 
 ### Default nextJS instructions
 
