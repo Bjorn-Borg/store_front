@@ -1,16 +1,15 @@
-version: '3.7'
+version: "3.7"
 
 services:
-
   storefront:
     container_name: storefront
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - '.:/app'
-      - '/app/node_modules'
+      - ".:/app"
+      - "/app/node_modules"
     ports:
-      - '8000:3000'
+      - "8000:3000"
     environment:
       - NODE_ENV=development

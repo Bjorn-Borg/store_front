@@ -1,5 +1,5 @@
-import React from 'react'
-import Head from 'next/head'
+import React from "react";
+import Head from "next/head";
 
 export default props => (
   <Head>
@@ -7,13 +7,13 @@ export default props => (
       async
       custom-element={props.name}
       src={
-        'https://cdn.ampproject.org/v0/' +
+        "https://cdn.ampproject.org/v0/" +
         props.name +
-        '-' +
+        "-" +
         props.version +
-        '.js'
+        ".js"
       }
       key={props.name}
     />
   </Head>
-)
+);

@@ -5,6 +5,7 @@ import { useAmp } from "next/amp";
 import { GA_TRACKING_ID } from "../lib/gtag";
 import AmpAnalytics from "../components/amp/AmpAnalytics";
 import AmpOptimize from "../components/amp/AmpOptimize";
+import Head from "next/head";
 
 function AmpWrap({ ampOnly, nonAmp }) {
   const isAmp = useAmp();
@@ -12,10 +13,32 @@ function AmpWrap({ ampOnly, nonAmp }) {
   return !isAmp && nonAmp;
 }
 
+const experiment = {
+  FlyingButton: {
+    sticky: true,
+    variants: {
+      "0": 40,
+      "1": 50
+    }
+  }
+};
+
 export default class extends Document {
   render() {
     return (
       <html>
+        <head>
+          <script
+            async
+            custom-element="amp-analytics"
+            src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"
+          ></script>
+          <script
+            async
+            custom-element="amp-experiment"
+            src="https://cdn.ampproject.org/v0/amp-experiment-0.1.js"
+          ></script>
+        </head>
         <body>
           <Main />
           <NextScript />
@@ -23,24 +46,35 @@ export default class extends Document {
           {/* AMP - Google Analytics */}
           <AmpWrap
             ampOnly={
-              <AmpAnalytics
-                type="googleanalytics"
-                script={{
-                  vars: {
-                    account: GA_TRACKING_ID,
-                    gtag_id: GA_TRACKING_ID,
-                    config: {
-                      [GA_TRACKING_ID]: { groups: "default" }
+              ((
+                <AmpAnalytics
+                  type="googleanalytics"
+                  script={{
+                    vars: {
+                      account: GA_TRACKING_ID,
+                      gtag_id: GA_TRACKING_ID,
+                      config: {
+                        [GA_TRACKING_ID]: { groups: "default" }
+                      }
+                    },
+                    requests: {
+                      experiment: "${pageview}&xid=${xid}&xvar=${xvar}"
+                    },
+
+                    triggers: {
+                      trackPageview: {
+                        on: "visible",
+                        request: "experiment",
+                        vars: {
+                          xid: "iQD4FnGfQxOBA8jC3C5Lyg",
+                          xvar: "VARIANT(flying-button)"
+                        }
+                      }
                     }
-                  },
-                  triggers: {
-                    trackPageview: {
-                      on: "visible",
-                      request: "pageview"
-                    }
-                  }
-                }}
-              />
+                  }}
+                />
+              ),
+              (<AmpOptimize script={experiment} />))
             }
           />
 

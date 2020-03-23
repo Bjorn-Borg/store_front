@@ -4,7 +4,7 @@ import AmpIncludeCustomElement from "./AmpIncludeCustomElement";
 export default props => (
   <>
     <AmpIncludeCustomElement name="amp-experiment" version="0.1" />
-    <amp-experiment type={props.type}>
+    <amp-experiment>
       {props.script && (
         <script
           type="application/json"
