@@ -58,16 +58,17 @@ export default class extends Document {
                       }
                     },
                     requests: {
-                      experiment: "${pageview}&xid=${xid}&xvar=${xvar}"
+                      experiment:
+                        "${pageview}&xid=${experiment}&xvar=${variant}"
                     },
 
                     triggers: {
-                      trackPageview: {
+                      "default pageview": {
                         on: "visible",
                         request: "experiment",
                         vars: {
-                          xid: "iQD4FnGfQxOBA8jC3C5Lyg",
-                          xvar: "VARIANT(flying-button)"
+                          experiment: "iQD4FnGfQxOBA8jC3C5Lyg",
+                          variant: "VARIANT(flying-button)"
                         }
                       }
                     }
