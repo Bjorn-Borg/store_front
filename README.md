@@ -13,7 +13,7 @@ This project is version controled in github and should follow the standard maste
 
 ### Git hooks
 
-After cloning the repository run the following commands to make the pre-commit hook executable:
+After cloning the repository run the following commands to make the git hooks executable:
 
 - Change the path for the git hooks to the folder .githooks (this allows sharing the hooks):
 
@@ -21,12 +21,10 @@ After cloning the repository run the following commands to make the pre-commit h
 git config core.hooksPath .githooks
 ```
 
-New hooks should be created inside this folder in order to be shared.
-
 - Make the hook executable:
 
 ```
-chmod +x .githooks/pre-commit
+chmod +x .githooks/*
 ```
 
 This should be ran for any new hook, by everyone using it.
