@@ -37,7 +37,7 @@ This should be ran for any new hook, by everyone using it.
 touch .githooks/pre-push
 ```
 
-2. Make the new hook file executable by running the following command, again substituting pre-push for your hook file's name:
+2. Make the new hook file executable by running the following command:
 
 ```
 chmod +x .githooks/*
