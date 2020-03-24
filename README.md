@@ -34,13 +34,13 @@ This should be ran for any new hook, by everyone using it.
 1. Create a new file inside .githooks/ in root with the name of the hook. You can use the following cli command substituting pre-push for the name of the hook you want to create:
 
 ```
-cd .githooks && touch pre-push
+touch .githooks/pre-push
 ```
 
 2. Make the new hook file executable by running the following command, again substituting pre-push for your hook file's name:
 
 ```
-cd .githooks && chmod +x pre-push && cd ..
+chmod +x .githooks/*
 ```
 
 3. Add content to your new hook file. Samples can be found inside .git/hooks and .githooks.
