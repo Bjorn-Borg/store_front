@@ -11,6 +11,42 @@ npm run performance
 
 This project is version controled in github and should follow the standard master > development > branching pattern. New updates to the project should go through pull requests, should be test covered, should not break any tests, and should comply with the performance threshold. Linter on every commit.
 
+### Git hooks
+
+After cloning the repository run the following commands to make the pre-commit hook executable:
+
+- Change the path for the git hooks to the folder .githooks (this allows sharing the hooks):
+
+```
+git config core.hooksPath .githooks
+```
+
+New hooks should be created inside this folder in order to be shared.
+
+- Make the hook executable:
+
+```
+chmod +x .githooks/pre-commit
+```
+
+This should be ran for any new hook, by everyone using it.
+
+- In case you are to create a new hook follow this example executing all commands from root:
+
+1. Create a new file inside .githooks/ in root with the name of the hook. You can use the following cli command substituting pre-push for the name of the hook you want to create:
+
+```
+cd .githooks && touch pre-push
+```
+
+2. Make the new hook file executable by running the following command, again substituting pre-push for your hook file's name:
+
+```
+cd .githooks && chmod +x pre-push && cd ..
+```
+
+3. Add content to your new hook file. Samples can be found inside .git/hooks and .githooks.
+
 ### Design pattern
 
 The project leverages the nextJS routing and uses pages structure to organize each view.
