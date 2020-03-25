@@ -1,12 +1,18 @@
 import Head from "next/head";
 import { NextPage } from "next";
 import Nav from "../components/navigation";
+import BottomNav from "../components/bottomNavigation";
 export const config = { amp: true };
 
 const Home: NextPage<{ userAgent: string }> = ({ userAgent }) => (
   <div>
     <Nav />
     <h1>Hello world! - user agent: {userAgent}</h1>
+    <BottomNav
+      handleChange={e => console.log("change")}
+      value="recents"
+      classes={{ root: "bottom-nav" }}
+    />
   </div>
 );
 

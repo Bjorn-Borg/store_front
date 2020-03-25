@@ -11,6 +11,9 @@
     "performance": "bash ./scripts/lighthouse_runner"
   },
   "dependencies": {
+    "@material-ui/core": "^4.9.7",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/types": "^5.0.0",
     "csv-writer": "^1.6.0",
     "next": "9.3.0",
     "react": "16.13.0",

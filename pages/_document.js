@@ -1,11 +1,12 @@
 import React from "react";
-import Document, { Main, NextScript } from "next/document";
+import Document, { Head, Main, NextScript } from "next/document";
 import { useAmp } from "next/amp";
+import { ServerStyleSheets } from "@material-ui/core/styles";
+import theme from "../assets/theme";
 
 import { GA_TRACKING_ID } from "../lib/gtag";
 import AmpAnalytics from "../components/amp/AmpAnalytics";
 import AmpOptimize from "../components/amp/AmpOptimize";
-import Head from "next/head";
 
 function AmpWrap({ ampOnly, nonAmp }) {
   const isAmp = useAmp();
@@ -23,11 +24,11 @@ const experiment = {
   }
 };
 
-export default class extends Document {
+export default class MyDocument extends Document {
   render() {
     return (
       <html>
-        <head>
+        <Head>
           <script
             async
             custom-element="amp-analytics"
@@ -38,7 +39,12 @@ export default class extends Document {
             custom-element="amp-experiment"
             src="https://cdn.ampproject.org/v0/amp-experiment-0.1.js"
           ></script>
-        </head>
+          <meta name="theme-color" content={theme.palette.primary.main} />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />
@@ -106,3 +112,47 @@ export default class extends Document {
     );
   }
 }
+
+MyDocument.getInitialProps = async ctx => {
+  // Resolution order
+  //
+  // On the server:
+  // 1. app.getInitialProps
+  // 2. page.getInitialProps
+  // 3. document.getInitialProps
+  // 4. app.render
+  // 5. page.render
+  // 6. document.render
+  //
+  // On the server with error:
+  // 1. document.getInitialProps
+  // 2. app.render
+  // 3. page.render
+  // 4. document.render
+  //
+  // On the client
+  // 1. app.getInitialProps
+  // 2. page.getInitialProps
+  // 3. app.render
+  // 4. page.render
+
+  // Render app and page and get the context of the page with collected side effects.
+  const sheets = new ServerStyleSheets();
+  const originalRenderPage = ctx.renderPage;
+
+  ctx.renderPage = () =>
+    originalRenderPage({
+      enhanceApp: App => props => sheets.collect(<App {...props} />)
+    });
+
+  const initialProps = await Document.getInitialProps(ctx);
+
+  return {
+    ...initialProps,
+    // Styles fragment is rendered after the app and page rendering finish.
+    styles: [
+      ...React.Children.toArray(initialProps.styles),
+      sheets.getStyleElement()
+    ]
+  };
+};
