@@ -67,6 +67,10 @@ The resulting scores for the test are saved in the LighthouseReports.csv in the 
 - One thing to watch for
   How the csv file is going to behave during merges is still unkown, therefore, merges should be dealt with using caution. It is best to manually merge the file in the first attempts and then write a script for it later if it is needed.
 
+### .env
+
+The analytics script requires the environment variable GA_TRACKING_ID, the should hold the google analytics ID.
+
 ### Default nextJS instructions
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
