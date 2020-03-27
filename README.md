@@ -50,6 +50,10 @@ chmod +x .githooks/*
 The project leverages the nextJS routing and uses pages structure to organize each view.
 The project is TDD. Every new feature needs unit, integration and e2e tests before merging to development.
 
+### UI library
+
+The project is addapted to use Mateial UI and should also be able to lavarage AMP's UI components.
+
 ### Next steps on setup
 
 Setting a docker container to run this project in
