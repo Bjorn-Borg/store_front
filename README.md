@@ -52,7 +52,7 @@ The project is TDD. Every new feature needs unit, integration and e2e tests befo
 
 ### UI library
 
-The project is addapted to use Mateial UI and should also be able to lavarage AMP's UI components.
+The project is addapted to use Mateial UI and should also be able to use AMP's UI components.
 
 ### Next steps on setup
 
