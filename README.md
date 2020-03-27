@@ -56,8 +56,8 @@ The project is addapted to use Mateial UI and should also be able to lavarage AM
 
 ### Next steps on setup
 
-Setting a docker container to run this project in
-Set the first test suites in Jest and Cypress
+- Setting a docker container to run this project in.
+- Set the first test suites in Jest and Cypress.
 
 ### Performance monitoring flow
 
