@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-// import Link from "next/link";
 import { BottomNavigation } from "@material-ui/core";
 import { BottomNavigationAction } from "@material-ui/core";
 import RestoreIcon from "@material-ui/icons/Restore";
@@ -13,9 +12,7 @@ interface TypedProps {
   classes: { root: string };
 }
 
-const test = "test12s2sd22221222";
-
-const BottomNav = (props: TypedProps) => {
+const BottomNav = (props: TypedProps): void => {
   const { value, handleChange, classes } = props;
   return (
     <BottomNavigation

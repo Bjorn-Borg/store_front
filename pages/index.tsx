@@ -1,4 +1,4 @@
-import Head from "next/head";
+import React from "react";
 import { NextPage } from "next";
 import Nav from "../components/navigation";
 import BottomNav from "../components/bottomNavigation";
@@ -9,14 +9,14 @@ const Home: NextPage<{ userAgent: string }> = ({ userAgent }) => (
     <Nav />
     <h1>Hello world! - user agent: {userAgent}</h1>
     <BottomNav
-      handleChange={e => console.log("change")}
+      handleChange={(): string => "change"}
       value="recents"
       classes={{ root: "bottom-nav" }}
     />
   </div>
 );
 
-Home.getInitialProps = async ({ req }) => {
+Home.getInitialProps = async ({ req }): string => {
   const userAgent = req ? req.headers["user-agent"] || "" : navigator.userAgent;
   return { userAgent };
 };

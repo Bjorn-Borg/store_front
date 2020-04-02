@@ -1,7 +1,8 @@
 import React from "react";
 export const config = { amp: true };
 
-export default (page: {}) => {
-  console.log(page, Object.keys(page)[0]);
+const Page = (): void => {
   return <p>This is a page !</p>;
 };
+
+export default Page;
