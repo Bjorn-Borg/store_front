@@ -6,6 +6,7 @@ import Link from "next/link";
 //   handleChange: (event: React.MouseEvent<HTMLElement>) => void;
 //   classes: { root: string };
 // }
+const test: string = "test12s2sd2222122";
 
 const Nav = () => (
   <nav>
