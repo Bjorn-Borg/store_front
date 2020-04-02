@@ -56,7 +56,6 @@ The project is addapted to use Mateial UI and should also be able to use AMP's U
 
 ### Next steps on setup
 
-- Setting a docker container to run this project in.
 - Set the first test suites in Jest and Cypress.
 
 ### Performance monitoring flow
@@ -88,6 +87,24 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+
+### Docker Container
+
+This project runs in a docker container. There is a <i>Dockerfile</i> that containerize the application, and a <i>docker-compose.yml</i>
+that exposes the port and creates the volumes of the container.  
+To start the project in the container, run:  
+
+``npm run dev:start``  
+
+and to stop it, you can either type Ctrl-X, or in a new terminal run:
+
+``npm run dev:stop``
+
+In case you need to install any dependencies to the project, in the terminal type:
+
+``docker exec -it storefront /bin/bash``
+
+and then you have a bash session inside the container. Once in there you can <i>npm install</i> dependencies as usual, and it will update the <i>packege.json</i> file.
 
 ## Learn More
 
