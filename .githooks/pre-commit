@@ -3,6 +3,8 @@ if [[ "$STAGED_FILES" = "" ]]; then
     exit 0
 fi
 
+echo STAGED_FILES
+
 PASS=true
 
 jest --bail --findRelatedTests $STAGED_FILES
