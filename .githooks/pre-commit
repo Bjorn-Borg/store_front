@@ -3,7 +3,7 @@ if [[ "$STAGED_FILES" = "" ]];
 then
     exit 0
     else
-echo "nothing there"
+echo "nothing there $STAGED_FILES"
 fi
 
 echo something here $STAGED_FILES
