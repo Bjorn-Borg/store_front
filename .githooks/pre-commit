@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep "js$")
 if [[ "$STAGED_FILES" = "" ]];
