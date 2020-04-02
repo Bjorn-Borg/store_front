@@ -1,6 +1,6 @@
 #!/bin/sh
 npm run test:pc
-if test $? = 1
+if test $? = 2
 printf "\n\n\n ----------------- Fix the tests before commiting ----------------- \n\n\n\n"
 then exit 0
 fi
