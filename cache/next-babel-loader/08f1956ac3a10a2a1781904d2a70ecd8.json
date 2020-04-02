@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from \"react\";\nexport const config = {\n  amp: true\n};\nexport default (page => {\n  console.log(page, Object.keys(page)[0]);\n  return __jsx(\"p\", null, \"This is a page !\");\n});","map":null,"metadata":{},"sourceType":"module"}
