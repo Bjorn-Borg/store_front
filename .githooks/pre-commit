@@ -1,4 +1,11 @@
 #!/bin/sh
+
+npm run lint
+if test $? = 0
+printf "\n\n\n ----------------- Fix all the linting errors before commiting ----------------- \n\n\n\n"
+then exit 0
+fi
+
 npm run test:pc
 if test $? = 0
 then exit 0
