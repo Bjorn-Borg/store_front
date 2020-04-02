@@ -1,4 +1,4 @@
 #!/bin/sh
 npm run test:pc
-echo $?
+echo "this echo" $?
 npm run performance
