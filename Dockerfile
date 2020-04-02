@@ -7,6 +7,11 @@ WORKDIR /app
 # add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 
+# add group with permissions
+RUN addgroup --gid 1024 mygroup
+RUN adduser --disabled-password --gecos "" --force-badname --ingroup 1024 myuser 
+USER myuser
+
 # Copy the file from your host to your current location
 COPY package.json /app/package.json
 

@@ -71,6 +71,14 @@ The resulting scores for the test are saved in the LighthouseReports.csv in the 
 
 The analytics script requires the environment variable GA_TRACKING_ID, the should hold the google analytics ID.
 
+### TDD
+
+To run unit and integration tests with jest in watch mode run the following script:
+
+```
+npm run dev:test
+```
+
 ### Default nextJS instructions
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
