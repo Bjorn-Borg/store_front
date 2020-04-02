@@ -1,5 +1,6 @@
 if npm run pc:test = false
-then exit 1
+then 
+exit 1
 else
 npm run performance
 fi
