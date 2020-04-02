@@ -9,4 +9,6 @@ lighthouse http://localhost:3000 --quiet --chrome-flags="--headless" --output 'j
 
 docker exec storefront /bin/bash -c "node reportReader.js"
 
+echo "Lighthouse test ran and saved successfully. Open LighthouseReports.csv to see the results of commit ${GT}"
+
 git add .
