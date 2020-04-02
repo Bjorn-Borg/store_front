@@ -10,7 +10,7 @@ echo something here $STAGED_FILES
 
 PASS=true
 
-npm run test:staged $STAGED_FILES
+npm run test:staged ./$STAGED_FILES
 if [[ "$?" == 0 ]]; then
     echo "\t\033[32mJest Tests Passed\033[0m"
 else
