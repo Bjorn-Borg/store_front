@@ -3,7 +3,7 @@ if [[ "$STAGED_FILES" = "" ]]; then
     exit 0
 fi
 
-echo "$STAGED_FILES"
+echo something here $STAGED_FILES
 
 PASS=true
 
