@@ -1,17 +1,17 @@
 #!/bin/bash
 
-STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep "js$")
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E -- "tsx|js$")
 if [[ "$STAGED_FILES" = "" ]];
 then
-    echo "even got here?? ${STAGED_FILES}"
     exit 0
 else
-    echo nothing there "$STAGED_FILES"
+    echo "nothing there ${STAGED_FILES}"
 fi
 
 echo something here $STAGED_FILES
 
 PASS=true
+echo "even got here?? ${PASS}"
 
 npm run test:staged $STAGED_FILES
 if [[ "$?" == 0 ]]; then
