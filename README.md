@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Bjorn-Borg/store_front.svg?branch=ci)](https://travis-ci.org/Bjorn-Borg/store_front)
+
 This is the repository for Björn Borg's headless solution project. Follow this README for setting it up and scripts information.
 
 ### Available scripts
