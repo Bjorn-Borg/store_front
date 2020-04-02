@@ -3,6 +3,7 @@
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep "js$")
 if [[ "$STAGED_FILES" = "" ]];
 then
+    echo "even got here??"
     exit 0
 else
     echo nothing there "$STAGED_FILES"
