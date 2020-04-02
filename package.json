@@ -2,6 +2,7 @@
   "name": "store_front",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://GiorgosTagkoulis.github.io/store_front/",
   "scripts": {
     "dev:start": "docker-compose up",
     "dev:stop": "docker-compose stop storefront",
@@ -11,7 +12,7 @@
     "performance": "bash ./scripts/lighthouse_runner"
   },
   "dependencies": {
-    "@material-ui/core": "^4.9.7",
+    "@material-ui/core": "^4.9.8",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/types": "^5.0.0",
     "csv-writer": "^1.6.0",
