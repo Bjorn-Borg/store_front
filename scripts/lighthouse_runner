@@ -4,9 +4,9 @@ rm ./LighthouseOutput/*
 
 GT=$(git log -1 --pretty=format:'%H')
 
-lighthouse http://localhost:3000 --output 'json' 'html' --output-path ./LighthouseOutput/$(date +%F+%S)."$GT"
+lighthouse http://localhost:3000 -quiet --chrome-flags="--headless" --output 'json' 'html' --output-path ./LighthouseOutput/$(date +%F+%S)."$GT"
 # lighthouse http://localhost:3000 --view --output 'json' 'html' --output-path ./LighthouseOutput/$(date +%F+%S)."$GT"
 
-docker exec storefront /bin/bash -c "node reportReader.js" 
+docker exec storefront /bin/bash -c "node reportReader.js"
 
 git add .
