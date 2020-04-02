@@ -13,7 +13,7 @@ interface TypedProps {
   classes: { root: string };
 }
 
-const test: string = "test12s2sd22221";
+const test: string = "test12s2sd222212";
 
 const BottomNav = (props: TypedProps) => {
   const { value, handleChange, classes } = props;
