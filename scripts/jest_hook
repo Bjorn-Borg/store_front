@@ -1,14 +1,12 @@
 #!/bin/bash
 
-STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep "tsx$")
+### gets all typescript and js files
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E -- "tsx|js$")
 if [[ "$STAGED_FILES" = "" ]];
 then
     printf "\n\n\n ----------------- None of the added, changed or modified files are tested ----------------- \n\n\n\n"
     exit 0
 fi
-
-echo something here $STAGED_FILES
-
 
 docker exec storefront /bin/bash -c jest --bail --findRelatedTests ${STAGED_FILES}
 if [[ "$?" == 0 ]]; then
