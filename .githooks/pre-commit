@@ -1,2 +1,5 @@
-npm run pc:test
+if npm run pc:test = false
+then exit 1
+else
 npm run performance
+fi
