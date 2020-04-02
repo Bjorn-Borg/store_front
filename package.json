@@ -13,8 +13,8 @@
     "dev:test": "docker exec storefront /bin/bash -c 'jest --watchAll'",
     "pc:test": "docker exec storefront /bin/bash -c 'jest'",
     "test:ci": "jest --ci",
-    "test:staged": "docker exec storefront /scripts/bash -c 'jest --bail --findRelatedTests'",
-    "test:pc": "bash ./bin/jest_hook"
+    "test:staged": "docker exec storefront /bin/bash -c 'jest --bail --findRelatedTests'",
+    "test:pc": "bash ./script/jest_hook"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.7",
