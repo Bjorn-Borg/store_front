@@ -13,7 +13,6 @@
     "dev:test": "docker exec storefront /bin/bash -c 'jest --watchAll'",
     "pc:test": "docker exec storefront /bin/bash -c 'jest'",
     "test:ci": "jest --ci",
-    "test:staged": "docker exec storefront /bin/bash -c 'jest --bail --findRelatedTests'",
     "test:pc": "bash ./scripts/jest_hook"
   },
   "dependencies": {
