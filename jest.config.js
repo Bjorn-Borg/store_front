@@ -18,6 +18,14 @@ module.exports = {
     "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
   },
   collectCoverage: true,
-  coverageDirectory: "./coverage",
+  collectCoverageFrom: [
+    "/components/*.{tsx}",
+    "/pages/*.{tsx}",
+    "!/node_modules/",
+    "!index.tsx",
+    "!config/",
+    "!coverage/"
+  ],
+  coverageDirectory: "/coverage",
   coverageReporters: ["text", "json"]
 };
