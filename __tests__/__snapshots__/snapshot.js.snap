@@ -247,3 +247,9 @@ exports[`renders homepage unchanged 1`] = `
   </div>
 </div>
 `;
+
+exports[`renders newPage unchanged 1`] = `
+<p>
+  This is a page !
+</p>
+`;
