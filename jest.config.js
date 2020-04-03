@@ -19,8 +19,8 @@ module.exports = {
   },
   collectCoverage: true,
   collectCoverageFrom: [
-    "/components/*.{tsx}",
-    "/pages/*.{tsx}",
+    "/app/components/*.{tsx}",
+    "/app/pages/*.{tsx}",
     "!/node_modules/",
     "!index.tsx",
     "!config/",
