@@ -1,9 +1,7 @@
 import React, { FunctionComponent } from "react";
 import Link from "next/link";
 
-interface TypedProps {}
-
-export const Nav: FunctionComponent<TypedProps> = () => (
+export const Nav: FunctionComponent = () => (
   <nav>
     <ul>
       <li>
