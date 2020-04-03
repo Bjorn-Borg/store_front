@@ -19,13 +19,19 @@ module.exports = {
   },
   collectCoverage: true,
   collectCoverageFrom: [
-    "app/components/*.{tsx}",
-    "app/pages/*.{tsx}",
-    "!/node_modules/",
+    "**/*.{ts,tsx}",
+    "app/components/**/*.{tsx}",
+    "app/pages/**/*.{tsx}",
+    "!**/node_modules/**",
     "!index.tsx",
     "!config/",
-    "!coverage/"
+    "!coverage/",
+    "!lib/",
+    "!reportReader.js",
+    "!setupTests.js",
+    "!next-env-d-ts",
+    "!next-env-d-ts"
   ],
-  coverageDirectory: "coverage",
+  coverageDirectory: "coverage/",
   coverageReporters: ["text", "json"]
 };
