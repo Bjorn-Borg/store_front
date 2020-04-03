@@ -16,7 +16,7 @@ const Home: NextPage<{ userAgent: string }> = ({ userAgent }) => (
   </div>
 );
 
-Home.getInitialProps = async ({ req }): string => {
+Home.getInitialProps = async ({ req }): void => {
   const userAgent = req ? req.headers["user-agent"] || "" : navigator.userAgent;
   return { userAgent };
 };
