@@ -10,15 +10,17 @@ interface TypedProps {
   value: string;
   handleChange: (event: React.MouseEvent<HTMLElement>) => void;
   classes: { root: string };
+  phrase: string;
 }
 
 const BottomNav = (props: TypedProps): void => {
-  const { value, handleChange, classes } = props;
+  const { value, handleChange, classes, phrase } = props;
   return (
     <BottomNavigation
       value={value}
       onChange={handleChange}
       className={classes.root}
+      phrase={phrase}
     >
       <BottomNavigationAction
         label="Recents"
