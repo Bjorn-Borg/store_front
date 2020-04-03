@@ -17,6 +17,7 @@ module.exports = {
   moduleNameMapper: {
     "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
   },
+  collectCoverage: true,
   coverageDirectory: "./coverage",
   coverageReporters: ["text", "json"]
 };
