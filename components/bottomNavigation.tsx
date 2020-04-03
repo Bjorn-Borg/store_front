@@ -13,7 +13,7 @@ interface TypedProps {
   phrase: string;
 }
 
-const BottomNav = (props: TypedProps): void => {
+export const BottomNav: FunctionComponent<TypedProps> = props => {
   const { value, handleChange, classes } = props;
   return (
     <BottomNavigation
