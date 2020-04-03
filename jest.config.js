@@ -31,5 +31,13 @@ module.exports = {
     "!next.config.js"
   ],
   coverageDirectory: "/coverage/",
-  coverageReporters: ["text", "json"]
+  coverageReporters: ["text", "json"],
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: -10
+    }
+  }
 };
