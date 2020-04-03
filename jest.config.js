@@ -19,13 +19,13 @@ module.exports = {
   },
   collectCoverage: true,
   collectCoverageFrom: [
-    "/app/components/*.{tsx}",
-    "/app/pages/*.{tsx}",
+    "app/components/*.{tsx}",
+    "app/pages/*.{tsx}",
     "!/node_modules/",
     "!index.tsx",
     "!config/",
     "!coverage/"
   ],
-  coverageDirectory: "/coverage",
+  coverageDirectory: "coverage",
   coverageReporters: ["text", "json"]
 };
