@@ -23,7 +23,7 @@ module.exports = {
     "app/components/**/*.{tsx}",
     "app/pages/**/*.{tsx}",
     "!**/node_modules/**",
-    "!index.tsx",
+    "!**/index.tsx",
     "!config/",
     "!coverage/",
     "!lib/",
