@@ -9,7 +9,7 @@ then
 fi
 
 docker exec storefront /bin/bash -c jest --colors --collectCoverageFrom ${STAGED_FILES}
-echo $?
+echo something here $?
 
 docker exec storefront /bin/bash -c jest --bail --findRelatedTests ${STAGED_FILES}
 if [[ "$?" == 0 ]]; then
