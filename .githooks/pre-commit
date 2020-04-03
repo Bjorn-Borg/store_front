@@ -3,7 +3,7 @@
 npm run lint
 if test $? = 0
 echo "whats the exit code" $?
-then printf "\n\n\n ----------------- Remember to fix any warnings ----------------- \n\n\n\n"
+then printf "\n\n\n ----------------- Remember to fix any existing warnings ----------------- \n\n\n\n"
 elif test $? = 1
 printf "\n\n\n ----------------- Fix all the linting errors before commiting ----------------- \n\n\n\n"
 then exit 0
