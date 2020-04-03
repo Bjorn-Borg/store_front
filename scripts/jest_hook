@@ -8,7 +8,7 @@ then
     exit 0
 fi
 
-docker exec storefront /bin/bash -c jest --bail --colors --coverage --findRelatedTests ${STAGED_FILES}
+docker exec storefront /bin/bash -c jest --bail --colors --coverage --coverageReporters ["text"] --findRelatedTests ${STAGED_FILES}
 if [[ "$?" == 0 ]]; then
     printf "\n\n\n ----------------- All tests passed! ----------------- \n\n\n\n"
 else

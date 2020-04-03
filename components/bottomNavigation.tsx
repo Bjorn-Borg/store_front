@@ -14,12 +14,13 @@ interface TypedProps {
 }
 
 const BottomNav = (props: TypedProps): void => {
-  const { value, handleChange, classes } = props;
+  const { value, handleChange, classes, phrase } = props;
   return (
     <BottomNavigation
       value={value}
       onChange={handleChange}
       className={classes.root}
+      phrase={phrase}
     >
       <BottomNavigationAction
         label="Recents"
