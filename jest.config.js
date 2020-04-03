@@ -20,8 +20,6 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     "**/*.{ts,tsx}",
-    "app/components/**/*.{tsx}",
-    "app/pages/**/*.{tsx}",
     "!**/node_modules/**",
     "!**/index.tsx",
     "!config/",
@@ -29,9 +27,9 @@ module.exports = {
     "!lib/",
     "!reportReader.js",
     "!setupTests.js",
-    "!**/next-env-d.ts",
+    "!**/next-env.d.ts",
     "!next.config.js"
   ],
-  coverageDirectory: "coverage/",
+  coverageDirectory: "/coverage/",
   coverageReporters: ["text", "json"]
 };
