@@ -1,5 +1,5 @@
 import React from "react";
-import { NextPage } from "next";
+import { NextPage, NextPageContext } from "next";
 import Nav from "../components/navigation";
 import BottomNav from "../components/bottomNavigation";
 export const config = { amp: true };
@@ -16,7 +16,11 @@ const Home: NextPage<{ userAgent: string }> = ({ userAgent }) => (
   </div>
 );
 
-Home.getInitialProps = async ({ req }): void => {
+interface InitialProps extends NextPageContext {
+  userAgent: string;
+}
+
+Home.getInitialProps = async ({ req }): InitialProps => {
   const userAgent = req ? req.headers["user-agent"] || "" : navigator.userAgent;
   return { userAgent };
 };

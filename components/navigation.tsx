@@ -1,13 +1,9 @@
 import React, { FunctionComponent } from "react";
 import Link from "next/link";
 
-// interface TypedProps {
-//   value: string;
-//   handleChange: (event: React.MouseEvent<HTMLElement>) => void;
-//   classes: { root: string };
-// }
+interface TypedProps {}
 
-const Nav = (): void => (
+export const Nav: FunctionComponent<TypedProps> = () => (
   <nav>
     <ul>
       <li>
