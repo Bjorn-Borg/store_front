@@ -29,7 +29,7 @@ module.exports = {
     "!lib/",
     "!reportReader.js",
     "!setupTests.js",
-    "!next-env-d.ts",
+    "!**/next-env-d.ts",
     "!next.config.js"
   ],
   coverageDirectory: "coverage/",
