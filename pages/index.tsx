@@ -17,10 +17,10 @@ const Home: NextPage<{ userAgent: string }> = ({ userAgent }) => (
 );
 
 interface InitialProps extends NextPageContext {
-  userAgent: string;
+  req?: any;
 }
 
-Home.getInitialProps = async ({ req }): InitialProps => {
+Home.getInitialProps = async ({ req }: InitialProps) => {
   const userAgent = req ? req.headers["user-agent"] || "" : navigator.userAgent;
   return { userAgent };
 };
