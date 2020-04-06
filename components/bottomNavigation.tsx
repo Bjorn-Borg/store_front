@@ -10,7 +10,6 @@ interface TypedProps {
   value: string;
   handleChange: (event: React.MouseEvent<HTMLElement>) => void;
   classes: { root: string };
-  phrase: string;
 }
 
 export const BottomNav: FunctionComponent<TypedProps> = props => {

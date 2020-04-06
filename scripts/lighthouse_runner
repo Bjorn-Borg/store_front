@@ -4,8 +4,17 @@ rm ./LighthouseOutput/*
 
 GT=$(git log -1 --pretty=format:'%H')
 
-lighthouse http://localhost:3000 --quiet --chrome-flags="--headless" --output 'json' 'html' --output-path ./LighthouseOutput/$(date +%F+%S)."$GT"
 # lighthouse http://localhost:3000 --view --output 'json' 'html' --output-path ./LighthouseOutput/$(date +%F+%S)."$GT"
+lighthouse http://localhost:3000 --quiet --chrome-flags="--headless" --output 'json' 'html' --output-path ./LighthouseOutput/$(date +%F+%S)."$GT"
+if [ $? -eq 0 ]; then
+    echo "something here" $?
+    printf "\n\n\n ----------------- Lighthouse tests ran successfully ----------------- \n\n\n\n"
+    elif [ $? = 1 ]; then
+    printf "\n\n\n ----------------- Lighthouse tests couldn't run, check if: ----------------- \n\n"
+    printf "\n\n ----------------- 1. The project is running on localhost:3000 ----------------- \n\n"
+    printf "\n\n ----------------- 2. The project is running without compiling errors ----------------- \n\n\n\n"
+    exit 0
+fi
 
 docker exec storefront /bin/bash -c "node reportReader.js"
 

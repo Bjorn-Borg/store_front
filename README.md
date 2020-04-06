@@ -9,7 +9,7 @@ npm run performance
 
 ### Version control
 
-This project is version controled in github and should follow the standard master > development > branching pattern. New updates to the project should go through pull requests, should be test covered, should not break any tests, and should comply with the performance threshold. Linter on every commit.
+This project is version controled in github and should follow the standard master > development > branching pattern. New updates to the project should go through pull requests, and every commit should be test covered, comply with linter, should not break any tests, and should comply with the performance threshold.
 
 ### Git hooks
 
@@ -78,6 +78,28 @@ To run unit and integration tests with jest in watch mode run the following scri
 ```
 npm run dev:test
 ```
+
+### ESlint
+
+The linter is set to run on every commit but I would also suggest running it more frequently to avoid ammounting lint fixes to the point of commit. To run the linter run the following script (with docker running):
+
+```
+npm run lint
+```
+
+### Test coverage
+
+The jest testing coverage right now is set to
+
+- 80% functions
+- 80% branches
+- 80% lines
+- -10 statements
+
+If this threshold is not met the test suite will fail and the commit will be aborted.
+If it is needed to change this threshold these values can be found in coverageThreshold in jest.config.js.
+The coverageThreshold is set globaly, but can also be set to specific directories or files if needed.
+For more config options check [jest docks](https://jestjs.io/docs/en/configuration#coveragethreshold-object)
 
 ### Default nextJS instructions
 

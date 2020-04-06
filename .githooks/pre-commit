@@ -1,15 +1,15 @@
 #!/bin/sh
 
 npm run lint
-if test $? = 0
-then printf "\n\n\n ----------------- Remember to fix any existing warnings ----------------- \n\n\n\n"
-elif test $? = 1
-printf "\n\n\n ----------------- Fix all the linting errors before commiting ----------------- \n\n\n\n"
-then exit 0
+if [ $? = 0 ]; then
+    printf "\n\n\n ----------------- Remember to fix any existing warnings ----------------- \n\n\n\n"
+    elif [ $? = 1 ]; then
+    printf "\n\n\n ----------------- Fix all the linting errors before commiting ----------------- \n\n\n\n"
+    exit 0
 fi
 
 npm run test:pc
-if test $? = 1
-then exit 1
+if [ $? = 1 ]; then
+    exit 1
 fi
 npm run performance
