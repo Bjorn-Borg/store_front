@@ -13,7 +13,7 @@ if [ $? -eq 0 ]; then
     printf "\n\n\n ----------------- Lighthouse tests couldn't run, check if: ----------------- \n\n"
     printf "\n\n ----------------- 1. The project is running on localhost:3000 ----------------- \n\n"
     printf "\n\n ----------------- 2. The project is running without compiling errors ----------------- \n\n\n\n"
-    exit 0
+    exit 1
 fi
 
 docker exec storefront /bin/bash -c "node reportReader.js"
