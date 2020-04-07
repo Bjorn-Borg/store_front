@@ -9,7 +9,7 @@ npm run performance
 
 ### Version control
 
-This project is version controled in github and should follow the standard master > development > branching pattern. New updates to the project should go through pull requests, should be test covered, should not break any tests, and should comply with the performance threshold. Linter on every commit.
+This project is version controled in github and should follow the standard master > development > branching pattern. New updates to the project should go through pull requests, and every commit should be test covered, comply with linter, should not break any tests, and should comply with the performance threshold.
 
 ### Git hooks
 
@@ -56,7 +56,7 @@ The project is addapted to use Mateial UI and should also be able to use AMP's U
 
 ### Next steps on setup
 
-- Set the first test suites in Jest and Cypress.
+- Set the first test suites in Cypress.
 
 ### Performance monitoring flow
 
@@ -69,6 +69,36 @@ The resulting scores for the test are saved in the LighthouseReports.csv in the 
 ### .env
 
 The analytics script requires the environment variable GA_TRACKING_ID, the should hold the google analytics ID.
+
+### TDD
+
+To run unit and integration tests with jest in watch mode run the following script:
+
+```
+npm run dev:test
+```
+
+### ESlint
+
+The linter is set to run on every commit but I would also suggest running it more frequently to avoid ammounting lint fixes to the point of commit. To run the linter run the following script (with docker running):
+
+```
+npm run lint
+```
+
+### Test coverage
+
+The jest testing coverage right now is set to
+
+- 80% functions
+- 80% branches
+- 80% lines
+- -10 statements
+
+If this threshold is not met the test suite will fail and the commit will be aborted.
+If it is needed to change this threshold these values can be found in coverageThreshold in jest.config.js.
+The coverageThreshold is set globaly, but can also be set to specific directories or files if needed.
+For more config options check [jest docks](https://jestjs.io/docs/en/configuration#coveragethreshold-object)
 
 ### Default nextJS instructions
 
@@ -92,17 +122,17 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 This project runs in a docker container. There is a <i>Dockerfile</i> that containerize the application, and a <i>docker-compose.yml</i>
 that exposes the port and creates the volumes of the container.  
-To start the project in the container, run:  
+To start the project in the container, run:
 
-``npm run dev:start``  
+`npm run dev:start`
 
 and to stop it, you can either type Ctrl-X, or in a new terminal run:
 
-``npm run dev:stop``
+`npm run dev:stop`
 
 In case you need to install any dependencies to the project, in the terminal type:
 
-``docker exec -it storefront /bin/bash``
+`docker exec -it storefront /bin/bash`
 
 and then you have a bash session inside the container. Once in there you can <i>npm install</i> dependencies as usual, and it will update the <i>packege.json</i> file.
 
