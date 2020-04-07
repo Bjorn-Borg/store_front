@@ -5,6 +5,8 @@ This is the repository for Björn Borg's headless solution project. Follow this 
 ```
 npm run dev
 npm run performance
+npm run dev:test
+npm run lint
 ```
 
 ### Version control
