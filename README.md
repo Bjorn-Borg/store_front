@@ -1,17 +1,58 @@
 This is the repository for Björn Borg's headless solution project. Follow this README for setting it up and scripts information.
 
-### Available scripts
+## Available scripts
 
 ```
 npm run dev
 npm run performance
+npm run dev:test
+npm run lint
 ```
 
-### Version control
+## Version control
 
 This project is version controled in github and should follow the standard master > development > branching pattern. New updates to the project should go through pull requests, and every commit should be test covered, comply with linter, should not break any tests, and should comply with the performance threshold.
 
-### Git hooks
+## Quality Assurance
+
+#### Commit treadmill:
+
+On every commit the following scripts are run:
+
+1.  The linter:
+
+```
+npm run lint
+```
+
+It will check for typos and code syntax warnings and actual errors and will stop the commit in two scenarios:
+
+- There are errors
+- There are more than 10 warnings
+
+2. The jest test suites:
+
+```
+npm run test:pc
+```
+
+It will run all the suites that are related to the staged files for that commit and expect those files to have a minimum coverage. It will exit the commit in two scenarios:
+
+- Any of the tests don't pass
+- The coverage threshold is not met
+
+3. The lighthouse tests:
+
+```
+npm run performance
+```
+
+It will run the lighthouse test suite in quiet and headless mode and save the scores of that commit in the LighthouseReports.csv file. It will exit the commit in two scenarios:
+
+- The lighthouse fails to run, which means the project is not compiling
+- One of the lighthouse scores threshold was not met
+
+#### Git hooks
 
 After cloning the repository run the following commands to make the git hooks executable:
 
@@ -45,7 +86,7 @@ chmod +x .githooks/*
 
 3. Add content to your new hook file. Samples can be found inside .git/hooks and .githooks.
 
-### Design pattern
+## Design pattern
 
 The project leverages the nextJS routing and uses pages structure to organize each view.
 The project is TDD. Every new feature needs unit, integration and e2e tests before merging to development.
@@ -54,23 +95,17 @@ The project is TDD. Every new feature needs unit, integration and e2e tests befo
 
 The project is addapted to use Mateial UI and should also be able to use AMP's UI components.
 
-### Next steps on setup
+## Next steps on setup
 
 - Set the first test suites in Cypress.
-
-### Performance monitoring flow
-
-The performance script is set to run on every commit. The pre commit hook also includes git add . command, so there's no need to use it before commiting. The hook will run google lighthouse and save the test results in a json file and an html file that can be opened in the browser. The files are saved localy in LighthouseOutput.
-The resulting scores for the test are saved in the LighthouseReports.csv in the root, and should be saved in the repo. Along with the scores the script will save the date and commit id so that performance changes can be tracked down in the commit tree.
-
-- One thing to watch for
-  How the csv file is going to behave during merges is still unkown, therefore, merges should be dealt with using caution. It is best to manually merge the file in the first attempts and then write a script for it later if it is needed.
+- Finish the pre-commit and pre-merge treadmills.
+- Set up environments
 
 ### .env
 
 The analytics script requires the environment variable GA_TRACKING_ID, the should hold the google analytics ID.
 
-### TDD
+## TDD
 
 To run unit and integration tests with jest in watch mode run the following script:
 
@@ -78,7 +113,7 @@ To run unit and integration tests with jest in watch mode run the following scri
 npm run dev:test
 ```
 
-### ESlint
+#### ESlint
 
 The linter is set to run on every commit but I would also suggest running it more frequently to avoid ammounting lint fixes to the point of commit. To run the linter run the following script (with docker running):
 
@@ -86,7 +121,7 @@ The linter is set to run on every commit but I would also suggest running it mor
 npm run lint
 ```
 
-### Test coverage
+#### Test coverage
 
 The jest testing coverage right now is set to
 
@@ -99,6 +134,14 @@ If this threshold is not met the test suite will fail and the commit will be abo
 If it is needed to change this threshold these values can be found in coverageThreshold in jest.config.js.
 The coverageThreshold is set globaly, but can also be set to specific directories or files if needed.
 For more config options check [jest docks](https://jestjs.io/docs/en/configuration#coveragethreshold-object)
+
+#### Performance monitoring flow
+
+The performance script is set to run on every commit. The hook will run google lighthouse and save the test results in a json file and an html file that can be opened in the browser. The files are saved localy in LighthouseOutput.
+The resulting scores for the test are assessed and if any of the scores don't achieve the minimum standard it will break the commit. If the scores meet the requirements, they are saved in the LighthouseReports.csv in the root, and should be saved in the repo. Along with the scores the script will save the date and commit id so that performance changes can be tracked down in the commit tree.
+
+- One thing to watch for
+  How the csv file is going to behave during merges is still unkown, therefore, merges should be dealt with using caution. It is best to manually merge the file in the first attempts and then write a script for it later if it is needed.
 
 ### Default nextJS instructions
 

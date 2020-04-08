@@ -8,13 +8,13 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "performance:show": "lighthouse http://localhost:3000 --quiet --chrome-flags='--headless' --view --output-path ./LighthouseOutput/",
     "performance": "bash ./scripts/lighthouse_runner",
     "test": "jest --watchAll",
     "dev:test": "docker exec storefront /bin/bash -c 'jest --watchAll'",
-    "pc:test": "docker exec storefront /bin/bash -c 'jest'",
     "test:ci": "jest --ci",
     "test:pc": "bash ./scripts/jest_hook",
-    "lint": "docker exec storefront /bin/bash -c 'eslint . --ext .tsx,.ts --fix'"
+    "lint": "docker exec storefront /bin/bash -c 'eslint . --ext .tsx,.ts --fix --max-warnings 10'"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.7",
@@ -25,7 +25,6 @@
     "react": "16.13.0",
     "react-dom": "16.13.0",
     "eslint-plugin-jest": "^23.8.2"
-
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.1.0",
