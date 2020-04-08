@@ -66,10 +66,12 @@ const appendToFile = data => {
   fs.appendFile("./LighthouseReports.csv", stringified, "utf8", function(err) {
     if (err) {
       console.log(
-        "Some error occured - file either not saved or corrupted file saved."
+        "----------------- Some error occured - file either not saved or corrupted file saved. -----------------"
       );
     } else {
-      console.log("It's saved!");
+      console.log(
+        "----------------- LighthouseReports.csv was succesfully updated with the latest scores! -----------------"
+      );
     }
   });
 };
