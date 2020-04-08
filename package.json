@@ -8,7 +8,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "performance:show": "lighthouse http://localhost:3000 --quiet --chrome-flags='--headless' --view",
+    "performance:show": "lighthouse http://localhost:3000 --quiet --chrome-flags='--headless' --view --output-path ./LighthouseOutput/",
     "performance": "bash ./scripts/lighthouse_runner",
     "test": "jest --watchAll",
     "dev:test": "docker exec storefront /bin/bash -c 'jest --watchAll'",
