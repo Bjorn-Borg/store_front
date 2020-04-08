@@ -13,6 +13,8 @@ npm run lint
 
 This project is version controled in github and should follow the standard master > development > branching pattern. New updates to the project should go through pull requests, and every commit should be test covered, comply with linter, should not break any tests, and should comply with the performance threshold.
 
+## Quality Assurance
+
 #### Commit treadmill:
 
 On every commit the following scripts are run:
@@ -48,7 +50,7 @@ npm run performance
 It will run the lighthouse test suite in quiet and headless mode and save the scores of that commit in the LighthouseReports.csv file. It will exit the commit in two scenarios:
 
 - The lighthouse fails to run, which means the project is not compiling
-- The performance threshold was not met (yet to be implemented)
+- One of the lighthouse scores threshold was not met
 
 #### Git hooks
 
@@ -135,8 +137,8 @@ For more config options check [jest docks](https://jestjs.io/docs/en/configurati
 
 #### Performance monitoring flow
 
-The performance script is set to run on every commit. The pre commit hook also includes git add . command, so there's no need to use it before commiting. The hook will run google lighthouse and save the test results in a json file and an html file that can be opened in the browser. The files are saved localy in LighthouseOutput.
-The resulting scores for the test are saved in the LighthouseReports.csv in the root, and should be saved in the repo. Along with the scores the script will save the date and commit id so that performance changes can be tracked down in the commit tree.
+The performance script is set to run on every commit. The hook will run google lighthouse and save the test results in a json file and an html file that can be opened in the browser. The files are saved localy in LighthouseOutput.
+The resulting scores for the test are assessed and if any of the scores don't achieve the minimum standard it will break the commit. If the scores meet the requirements, they are saved in the LighthouseReports.csv in the root, and should be saved in the repo. Along with the scores the script will save the date and commit id so that performance changes can be tracked down in the commit tree.
 
 - One thing to watch for
   How the csv file is going to behave during merges is still unkown, therefore, merges should be dealt with using caution. It is best to manually merge the file in the first attempts and then write a script for it later if it is needed.
