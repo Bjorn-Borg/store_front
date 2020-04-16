@@ -2,24 +2,31 @@
 // https://on.cypress.io/intelligent-code-completion
 /// <reference types="Cypress" />
 
-describe("Batman TV shows", () => {
-  it("has list of shows", () => {
+describe("Home", () => {
+  it("has navbar with 5 links", () => {
     cy.visit("/");
-    cy.contains("h1", "Batman TV Shows");
-    cy.get("li").should("have.length.gt", 5);
+    cy.contains("a", "Home");
+    cy.get("nav").children().should("have.length", 1);
+    cy.get("ul").children().should("have.length", 5);
   });
 
-  it("goes to the first post", () => {
+  it("goes to the second link", () => {
     cy.visit("/");
-    cy.get("li").first().find("a").click();
-    cy.url().should("match", /\/p\/\d+$/);
+    cy.get("ul>li").eq(2).find("a").click();
+    cy.url().should("match", /newPage$/);
   });
 
-  it("has About page", () => {
+  it("goes through all the links", () => {
     cy.visit("/");
-    cy.contains("a", "About").click();
-    cy.location("pathname").should("equal", "/about");
-    cy.contains("a", "Home").click();
-    cy.location("pathname").should("equal", "/");
+    cy.get("ul>li").eq(1).find("a").click();
+    cy.url().should("match", /newPage$/);
+    cy.get("ul>li").eq(2).find("a").click();
+    cy.url().should("match", /newPage$/);
+    cy.get("ul>li").eq(3).find("a").click();
+    cy.url().should("match", /newPage$/);
+    cy.get("ul>li").eq(4).find("a").click();
+    cy.url().should("match", /newPage$/);
+    cy.get("ul>li").eq(0).find("a").click();
+    cy.url().should("match", /\//);
   });
 });

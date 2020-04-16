@@ -17,29 +17,3 @@ services:
     # stdin_open: true
     # tty: true
     # entrypoint: ["sh", "-c", "sleep 2073600"]
-  cypresstest:
-    container_name: cypresstest
-    build:
-      context: .
-      dockerfile: Dockerfile.cy
-    volumes:
-      - ".:/app"
-      - "/app/node_modules"
-      - "/app/coverage"
-    ports:
-      - "8080:8080"
-    environment:
-      display: "unix${DISPLAY}"
-      # - NODE_ENV=development
-    # stdin_open: true
-    # tty: true
-    # entrypoint: ["sh", "-c", "sleep 2073600"]
-  cypress:
-    image: "cypress/included:3.2.0"
-    depends_on:
-      - storefront
-    environment:
-      - CYPRESS_baseUrl=http://storefront:3000
-    working_dir: /e2e
-    volumes:
-      - ./e2e:/e2e
