@@ -1,0 +1,18 @@
+#!/bin/bash
+
+### gets all typescript and js files
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E -- "tsx|js$")
+if [[ "$STAGED_FILES" = "" ]];
+then
+    printf "\n\n\n ----------------- None of the added, changed or modified files are tested ----------------- \n\n"
+    printf "\n\n ----------------- Please be sure the code has a minimum test coverage ----------------- \n\n\n\n"
+    exit 0
+fi
+
+docker exec storefront /bin/bash -c jest --bail --colors --findRelatedTests ${STAGED_FILES}
+if [[ "$?" == 0 ]]; then
+    printf "\n\n\n ----------------- All tests passed! ----------------- \n\n\n\n"
+else
+    printf "\n\n\n ----------------- Fix the tests before commiting ----------------- \n\n\n\n"
+    exit 1
+fi

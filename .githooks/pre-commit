@@ -1,1 +1,18 @@
+#!/bin/sh
+
+npm run lint
+if [ $? = 0 ]; then
+    printf "\n\n\n ----------------- Remember to fix any existing warnings ----------------- \n\n\n\n"
+    elif [ $? = 1 ]; then
+    printf "\n\n\n ----------------- Fix all the linting errors and warnings before commiting ----------------- \n\n\n\n"
+    exit 0
+fi
+
+npm run test:pc
+if [ $? = 1 ]; then
+    exit 1
+fi
 npm run performance
+if [ $? = 1 ]; then
+    exit 1
+fi

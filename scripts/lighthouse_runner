@@ -4,9 +4,25 @@ rm ./LighthouseOutput/*
 
 GT=$(git log -1 --pretty=format:'%H')
 
-lighthouse http://localhost:3000 --output 'json' 'html' --output-path ./LighthouseOutput/$(date +%F+%S)."$GT"
 # lighthouse http://localhost:3000 --view --output 'json' 'html' --output-path ./LighthouseOutput/$(date +%F+%S)."$GT"
+lighthouse http://localhost:3000 --quiet --chrome-flags="--headless" --output 'json' 'html' --output-path ./LighthouseOutput/$(date +%F+%S)."$GT"
+if [ $? -eq 0 ]; then
+    printf "\n\n\n ----------------- Lighthouse tests ran successfully ----------------- \n\n\n\n"
+    elif [ $? = 1 ]; then
+    printf "\n\n\n ----------------- Lighthouse tests couldn't run, check if: ----------------- \n\n"
+    printf "\n\n ----------------- 1. The project is running on localhost:3000 ----------------- \n\n"
+    printf "\n\n ----------------- 2. The project is running without compiling errors ----------------- \n\n\n\n"
+    exit 1
+fi
 
-docker exec storefront /bin/bash -c "node reportReader.js" 
+docker exec storefront /bin/bash -c "node reportReader.js"
+if [ $? -eq 0 ]; then
+    printf "\n\n\n ----------------- Lighthouse scores are great! ----------------- \n\n\n\n"
+    elif [ $? = 1 ]; then
+    printf "\n\n\n ----------------- Lighthouse minimum scores not achieved, cancelling commit ----------------- \n\n"
+    exit 1
+fi
+
+printf "\n Lighthouse test ran and saved successfully. Open LighthouseReports.csv to see the results of commit ${GT} \n"
 
 git add .
