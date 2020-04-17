@@ -12,6 +12,7 @@
     "performance": "bash ./scripts/lighthouse_runner",
     "test": "jest --watchAll",
     "dev:test": "docker exec storefront /bin/bash -c 'jest --watchAll'",
+    "e2e": "cd e2e && docker-compose up --exit-code-from cypress && cd ..",
     "test:ci": "jest --ci",
     "test:pc": "bash ./scripts/jest_hook",
     "lint": "docker exec storefront /bin/bash -c 'eslint . --ext .tsx,.ts --fix --max-warnings 10'"
@@ -21,10 +22,10 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/types": "^5.0.0",
     "csv-writer": "^1.6.0",
-    "next": "9.3.2",
+    "eslint-plugin-jest": "^23.8.2",
+    "next": "^9.3.4",
     "react": "16.13.0",
-    "react-dom": "16.13.0",
-    "eslint-plugin-jest": "^23.8.2"
+    "react-dom": "16.13.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.1.0",
@@ -40,6 +41,7 @@
     "eslint-plugin-react": "^7.19.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.1.0",
+    "lighthouse": "^5.6.0",
     "react-test-renderer": "^16.12.0",
     "typescript": "^3.8.3"
   }

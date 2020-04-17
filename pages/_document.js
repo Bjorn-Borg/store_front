@@ -3,6 +3,7 @@ import Document, { Head, Main, NextScript } from "next/document";
 import { useAmp } from "next/amp";
 import { ServerStyleSheets } from "@material-ui/core/styles";
 import theme from "../assets/theme";
+import Nav from "../components/navigation";
 
 import { GA_TRACKING_ID } from "../lib/gtag";
 import AmpAnalytics from "../components/amp/AmpAnalytics";
@@ -19,9 +20,9 @@ const experiment = {
     sticky: true,
     variants: {
       "0": 40,
-      "1": 50
-    }
-  }
+      "1": 50,
+    },
+  },
 };
 
 export default class MyDocument extends Document {
@@ -46,6 +47,7 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
+          <Nav />
           <Main />
           <NextScript />
 
@@ -60,12 +62,12 @@ export default class MyDocument extends Document {
                       account: GA_TRACKING_ID,
                       gtag_id: GA_TRACKING_ID,
                       config: {
-                        [GA_TRACKING_ID]: { groups: "default" }
-                      }
+                        [GA_TRACKING_ID]: { groups: "default" },
+                      },
                     },
                     requests: {
                       experiment:
-                        "${pageview}&xid=${experiment}&xvar=${variant}"
+                        "${pageview}&xid=${experiment}&xvar=${variant}",
                     },
 
                     triggers: {
@@ -74,10 +76,10 @@ export default class MyDocument extends Document {
                         request: "experiment",
                         vars: {
                           experiment: "iQD4FnGfQxOBA8jC3C5Lyg",
-                          variant: "VARIANT(flying-button)"
-                        }
-                      }
-                    }
+                          variant: "VARIANT(flying-button)",
+                        },
+                      },
+                    },
                   }}
                 />
               ),
@@ -101,7 +103,7 @@ export default class MyDocument extends Document {
                       gtag('js', new Date());
 
                       gtag('config', '${GA_TRACKING_ID}');
-                    `
+                    `,
                   }}
                 />
               </>
@@ -113,7 +115,7 @@ export default class MyDocument extends Document {
   }
 }
 
-MyDocument.getInitialProps = async ctx => {
+MyDocument.getInitialProps = async (ctx) => {
   // Resolution order
   //
   // On the server:
@@ -142,7 +144,7 @@ MyDocument.getInitialProps = async ctx => {
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: App => props => sheets.collect(<App {...props} />)
+      enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
     });
 
   const initialProps = await Document.getInitialProps(ctx);
@@ -152,7 +154,7 @@ MyDocument.getInitialProps = async ctx => {
     // Styles fragment is rendered after the app and page rendering finish.
     styles: [
       ...React.Children.toArray(initialProps.styles),
-      sheets.getStyleElement()
-    ]
+      sheets.getStyleElement(),
+    ],
   };
 };
