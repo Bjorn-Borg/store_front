@@ -156,6 +156,16 @@ The resulting scores for the test are assessed and if any of the scores don't ac
 - One thing to watch for
   How the csv file is going to behave during merges is still unkown, therefore, merges should be dealt with using caution. It is best to manually merge the file in the first attempts and then write a script for it later if it is needed.
 
+- The current score tresholds are set to:
+
+  - performance: 0.7 (70)
+  - accessibility: 0.8 (80)
+  - bestPractices: 0.8 (80)
+  - seo: 0.8 (80)
+  - pwa: 0
+
+    _Should these minimum scores change for this project, they should be changed in reportReader.js inside the constant scoreThreshold._
+
 ### Default nextJS instructions
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
