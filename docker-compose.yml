@@ -14,6 +14,7 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=development
+    ## unconment these settings to start the container without running the app
     # stdin_open: true
     # tty: true
     # entrypoint: ["sh", "-c", "sleep 2073600"]

@@ -7,6 +7,7 @@ npm run dev
 npm run performance
 npm run dev:test
 npm run lint
+npm run e2e
 ```
 
 ## Version control
@@ -25,7 +26,7 @@ On every commit the following scripts are run:
 npm run lint
 ```
 
-It will check for typos and code syntax warnings and actual errors and will stop the commit in two scenarios:
+It will check for typos, code syntax warnings and actual errors. It will stop the commit with code 1 in two scenarios:
 
 - There are errors
 - There are more than 10 warnings
@@ -36,10 +37,10 @@ It will check for typos and code syntax warnings and actual errors and will stop
 npm run test:pc
 ```
 
-It will run all the suites that are related to the staged files for that commit and expect those files to have a minimum coverage. It will exit the commit in two scenarios:
+It will run all the suites that are related to the staged files for that commit and expect those files to have a minimum coverage. It will exit the commit with code 1 in two scenarios:
 
 - Any of the tests don't pass
-- The coverage threshold is not met
+- The [coverage threshold](#jest-coverage) is not met
 
 3. The lighthouse tests:
 
@@ -47,12 +48,24 @@ It will run all the suites that are related to the staged files for that commit 
 npm run performance
 ```
 
-It will run the lighthouse test suite in quiet and headless mode and save the scores of that commit in the LighthouseReports.csv file. It will exit the commit in two scenarios:
+It will run the lighthouse test suite in quiet and headless mode and save the scores of that commit in the LighthouseReports.csv file. It will exit the commit with code 1 in two scenarios:
 
 - The lighthouse fails to run, which means the project is not compiling
-- One of the lighthouse scores threshold was not met
+- One of the [lighthouse scores threshold](#performance-treshold) was not met
 
-#### Git hooks
+4. The e2e tests:
+
+```
+npm run e2e
+```
+
+It will run the cypress test suite in a separated container. The video of the tests run and the screenshot with errors will be stored in e2e/cypress/videos and e2e/cypress/screenshots, and the results of the run will be displayed in the console. It will exit the commit with code 1 in one scenario:
+
+- Any of the tests don't pass
+
+This treadmill enforces TDD and is higly recommended to be followed to maintain a bug free application. To activate this treadmill follow the Git Hooks section on how to activate the [git-hooks](#git-hooks).
+
+#### <a name="git-hooks"></a> Git hooks
 
 After cloning the repository run the following commands to make the git hooks executable:
 
@@ -121,7 +134,7 @@ The linter is set to run on every commit but I would also suggest running it mor
 npm run lint
 ```
 
-#### Test coverage
+#### <a name="jest-coverage"></a> Test coverage
 
 The jest testing coverage right now is set to
 
@@ -135,7 +148,7 @@ If it is needed to change this threshold these values can be found in coverageTh
 The coverageThreshold is set globaly, but can also be set to specific directories or files if needed.
 For more config options check [jest docks](https://jestjs.io/docs/en/configuration#coveragethreshold-object)
 
-#### Performance monitoring flow
+#### <a name="performance-treshold"></a> Performance monitoring flow
 
 The performance script is set to run on every commit. The hook will run google lighthouse and save the test results in a json file and an html file that can be opened in the browser. The files are saved localy in LighthouseOutput.
 The resulting scores for the test are assessed and if any of the scores don't achieve the minimum standard it will break the commit. If the scores meet the requirements, they are saved in the LighthouseReports.csv in the root, and should be saved in the repo. Along with the scores the script will save the date and commit id so that performance changes can be tracked down in the commit tree.
