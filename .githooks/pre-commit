@@ -1,6 +1,6 @@
 #!/bin/sh
 
-npm run lint
+npm run dev:lint
 if [ $? = 0 ]; then
     printf "\n\n\n ----------------- Remember to fix any existing warnings ----------------- \n\n\n\n"
     elif [ $? = 1 ]; then

@@ -10,6 +10,13 @@ npm run lint
 npm run e2e
 ```
 
+## Requirements:
+
+To run this project you will need:
+
+- npm
+- docker engine
+
 ## Version control
 
 This project is version controled in github and should follow the standard master > development > branching pattern. New updates to the project should go through pull requests, and every commit should be test covered, comply with linter, should not break any tests, and should comply with the performance threshold.
@@ -164,33 +171,20 @@ The resulting scores for the test are assessed and if any of the scores don't ac
   - seo: 0.8 (80)
   - pwa: 0
 
-    _Should these minimum scores change for this project, they should be changed in reportReader.js inside the constant scoreThreshold._
-
-### Default nextJS instructions
-
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
+    _Should these minimum scores change for this project, they should be changed in reportReader.js inside the constant scoreThreshold. These scores should only change in accordance with the needs of the project._
 
 ## Getting Started
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
 ### Docker Container
 
-This project runs in a docker container. There is a <i>Dockerfile</i> that containerize the application, and a <i>docker-compose.yml</i>
+This project runs in a docker container. There is a [<i>Dockerfile</i>](./Dockerfile) that containerize the application, and a <i>docker-compose.yml</i>
 that exposes the port and creates the volumes of the container.  
 To start the project in the container, run:
 
 `npm run dev:start`
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
 and to stop it, you can either type Ctrl-X, or in a new terminal run:
 
@@ -202,17 +196,61 @@ In case you need to install any dependencies to the project, in the terminal typ
 
 and then you have a bash session inside the container. Once in there you can <i>npm install</i> dependencies as usual, and it will update the <i>packege.json</i> file.
 
-## Learn More
+### **Possible issues you might run into**
 
-To learn more about Next.js, take a look at the following resources:
+#### Docker image did not install the packages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+During setup we ran into this issue. After running npm run dev:start the container exited with code 1 complaining that it couldn't find next. That happened because during the image build the node_modules didn't get installed. To fix this uncomment the lines indicated in the end of [the main docker compose file](./docker-compose.yml), than run:
 
-You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
+```
+docker-compose up
+```
 
-## Deploy on ZEIT Now
+This will start the container with a placeholder command. Then open a new terminal tab and get inside the container by running:
 
-The easiest way to deploy your Next.js app is to use the [ZEIT Now Platform](https://zeit.co/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+docker-compose exec storefront bash
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Once inside the container install all the dependencies by running:
+
+```
+npm i
+npm i react-scripts@3.0.1 -g
+```
+
+Wait for it to finish installing the first npm i, than run the second command. Once both are done you can exit the container:
+
+```
+exit
+```
+
+Go into the first terminal window, the one that has docker running, **CTRL + C** there to kill the docker instance. Then go backk to [the main docker compose file](./docker-compose.yml) and comment out those lines that you uncommented in the first step.
+And try running the development server again:
+
+```
+npm run dev:start
+```
+
+#### Running without docker **HIGLHLY NOT RECOMENDED**
+
+If you ever need to run the project, or any of the scripts in package.json, without docker for debugging purposes, or because you don't have docker engine installed and want to develop without it (**HIGLHLY NOT RECOMENDED**), you will run into an access error for the folder .next and possibly for node_modules.
+To bypass the access error in your machine run:
+
+```
+sudo chown -R <user> /home/<user>/<path_to_directory>/store_front/.next
+```
+
+and for node_modules:
+
+```
+sudo chown -R <user> /home/<user>/<path_to_directory>/store_front/node_modules
+```
+
+Test if it worked by running:
+
+```
+npm run dev
+```
+
+This will allow you to run the project without docker, however, keep in mind that some scripts are ready to be run in docker, including scripts that are added to the git hooks. So you might not get the full functionality of this setup for development if your not using docker. Also if you don't use docker because you don't have a docker engine installed, then the e2e tests will not run at all.

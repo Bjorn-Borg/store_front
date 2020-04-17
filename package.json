@@ -15,7 +15,8 @@
     "e2e": "cd e2e && docker-compose up --exit-code-from cypress && cd ..",
     "test:ci": "jest --ci",
     "test:pc": "bash ./scripts/jest_hook",
-    "lint": "docker exec storefront /bin/bash -c 'eslint . --ext .tsx,.ts --fix --max-warnings 10'"
+    "lint": "eslint . --ext .tsx,.ts --fix --max-warnings 10",
+    "dev:lint": "docker exec storefront /bin/bash -c lint"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.7",
