@@ -5,7 +5,7 @@ if [ $? = 0 ]; then
     printf "\n\n\n ----------------- Remember to fix any existing warnings ----------------- \n\n\n\n"
     elif [ $? = 1 ]; then
     printf "\n\n\n ----------------- Fix all the linting errors and warnings before commiting ----------------- \n\n\n\n"
-    exit 0
+    exit 1
 fi
 
 npm run test:pc
