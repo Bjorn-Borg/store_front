@@ -117,9 +117,10 @@ The project is addapted to use Mateial UI and should also be able to use AMP's U
 
 ## Next steps on setup
 
-- Set the first test suites in Cypress.
-- Finish the pre-commit and pre-merge treadmills.
-- Set up environments
+- Finish the pre-commit and pre-push treadmills.
+- Install an i18n package.
+- Set up environments.
+- Set up authenticated connection to the api.
 
 ### .env
 
